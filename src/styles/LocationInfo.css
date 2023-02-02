@@ -12,3 +12,12 @@
     display: flex;
     gap: .5rem;
 }
+
+@media (max-width:800px) {
+
+    .card__location {
+        display: flex;
+        flex-direction: column;
+        padding-bottom: 0;
+    }
+}
