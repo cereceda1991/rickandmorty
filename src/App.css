@@ -1,0 +1,73 @@
+.App {
+    font-family: 'Raleway', sans-serif;
+}
+
+.card__head-front {
+    background-image: url(./assets/cover-mobile.d46b462b.png);
+    background-position: 50%;
+    background-size: cover;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 350px;
+    padding: 0.5rem 1rem;
+    text-align: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+.card__form {
+    display: flex;
+    gap: 0.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 48px 0 rgb(0 0 0 / 20%);
+    height: 40px;
+    padding: .5rem;
+    background-color: #fff;
+}
+
+.card__form button {
+    color: black;
+    border: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+.card__input {
+    border: none;
+    border-radius: 3px;
+    outline: none;
+    padding-left: 56px;
+    width: 100%;
+}
+
+.card__residents {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    width: 100%;
+    padding: 2rem;
+}
+
+.card__error {
+    text-align: center;
+}
+
+.card__title {
+    /* font-family: 'Rubik Vinyl', cursive; */
+    font-size: 28px;
+    /* letter-spacing: 1rem; */
+    text-shadow: -1px -8px 5px #000;
+    /* color: whitesmoke; */
+    /* border-radius: 1rem; */
+}
+
+.buttton__up {
+    display: block;
+    font-size: 2.5rem;
+    text-align: right;
+    padding: 3rem 5rem 3rem 0;
+    color: black;
+}

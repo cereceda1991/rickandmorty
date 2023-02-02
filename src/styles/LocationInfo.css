@@ -1,0 +1,14 @@
+.card__location {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem;
+    text-transform: capitalize;
+    margin-bottom: 1rem;
+}
+
+.info__location {
+    display: flex;
+    gap: .5rem;
+}
