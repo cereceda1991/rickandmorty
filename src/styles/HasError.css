@@ -1,0 +1,19 @@
+.container__error {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem
+}
+
+.card__error {
+    padding: 2rem;
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.card__img-error {
+    width: 500px;
+    aspect-ratio: 1.5;
+    border-radius: 50%;
+}

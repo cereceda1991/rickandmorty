@@ -3,9 +3,11 @@ import { useEffect, useState } from 'react'
 import './App.css'
 import './styles/ResidentInfo.css'
 import './styles/LocationInfo.css'
+import './styles/HasError.css'
 import LocationInfo from './components/LocationInfo'
 import ResidentInfo from './components/ResidentInfo'
 import getRandomLocation from './utils/getRandomLocation'
+import HasError from './components/HasError'
 
 function App() {
   const [location, setLocation] = useState()
@@ -45,9 +47,9 @@ function App() {
       </div>
       <div >
         {hasError ?
-          <h2 className='card__error'>❌ Hey! you must provide an id from 1 to 126 🥺</h2>
+          <HasError />
           :
-          <div >
+          <div className='container__location'>
             <LocationInfo location={location} />
             <div className='card__residents'>
               {

@@ -61,6 +61,11 @@
     font-weight: 800;
 }
 
+.card__item-value {
+    padding-left: .2rem;
+
+}
+
 @media (max-width: 915px) {
     .card__resident {
         display: flex;
