@@ -26,7 +26,11 @@ function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    setNumberLocation(e.target.inputLocation.value.trim())
+    if (e.target.inputLocation.value.trim().length === 0) {
+      setNumberLocation(getRandomLocation())
+    } else {
+      setNumberLocation(e.target.inputLocation.value.trim())
+    }
     e.target.inputLocation.value = e.target.inputLocation.value.trim()
   }
 
