@@ -10,6 +10,7 @@ import ResidentInfo from './components/ResidentInfo'
 import getRandomLocation from './utils/getRandomLocation'
 import HasError from './components/HasError'
 import SearchDimension from './components/SearchDimension'
+import SearchCharacter from './components/SearchCharacter'
 
 function App() {
   const [location, setLocation] = useState()
@@ -38,10 +39,16 @@ function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    if (e.target.inputLocation.value.trim().length === 0) {
-      setNumberLocation()
-    } else {
-      setNumberLocation(e.target.inputLocation.value.trim())
+    if (searchType === 'location') {
+      if (e.target.inputLocation.value.trim().length === 0) {
+        setNumberLocation()
+      } else {
+        setNumberLocation(e.target.inputLocation.value.trim())
+      }
+    } else if (searchType === 'Name-Location') {
+      if (dimensionId) {
+        setNumberLocation(dimensionId)
+      }
     }
   }
 
@@ -61,10 +68,18 @@ function App() {
 
 
           {searchType === 'Name-Location' ? (
-            <SearchDimension dimensionId={dimensionId} setDimensionId={setDimensionId} />
+            <SearchDimension
+              dimensionId={dimensionId}
+              setDimensionId={setDimensionId}
+            />
           ) : (
-            <input className='card__input' id='inputLocation' type="text" placeholder='Enter a location' />
+            searchType === 'character' ? (
+              <SearchCharacter />
+            ) : (
+              <input className='card__input' id='inputLocation' type="text" placeholder='Enter a location' />
+            )
           )}
+
 
           <button ><i className='bx bx-search-alt'></i></button>
         </form>

@@ -10,12 +10,11 @@ const SearchDimension = ({ dimensionId, setDimensionId }) => {
             setResults([]);
             return;
         }
-
         const url = `https://rickandmortyapi.com/api/location/?name=${dimensionName}`;
         axios
             .get(url)
-            .then((res) => setResults(res.data.results))
-            .catch((err) => console.log(err));
+            .then(res => setResults(res.data.results))
+            .catch(err => console.log(err));
     }, [dimensionName]);
 
     const handleClick = (result) => {
@@ -24,7 +23,6 @@ const SearchDimension = ({ dimensionId, setDimensionId }) => {
         setResults([]);
     };
 
-    console.log(dimensionId);
 
     return (
         <div className="card__SearchDimension">

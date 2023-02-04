@@ -25,6 +25,7 @@
     height: 40px;
     padding: .5rem;
     background-color: #fff;
+    width: max-content;
 }
 
 .card__form button {
