@@ -75,10 +75,33 @@
     align-items: center;
 }
 
+.container__button-pages {
+    display: flex;
+    gap: 1rem;
+    justify-content: left;
+    align-items: center;
+    padding-left: 3rem;
+    overflow: auto;
+}
 
-.Search__dimension {
+.button__pages {
+    display: flex;
+    width: 3.5rem;
+    aspect-ratio: 1;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    padding: 1rem;
+    background-color: black;
+    color: #fff;
+}
 
-    background-color: red;
+.button__pages:hover {
+    background-color: #aaa;
+    cursor: pointer;
+    color: black;
+    transition: 1s;
 }
 
 @media (max-width: 800px) {

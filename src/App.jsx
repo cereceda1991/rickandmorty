@@ -16,6 +16,7 @@ function App() {
   const [location, setLocation] = useState()
   const [numberLocation, setNumberLocation] = useState(getRandomLocation())
   const [hasError, setHasError] = useState(false)
+  const [currentPage, setCurrentPage] = useState()
 
   const [selectedLocation, setSelectedLocation] = useState("");
   const [selectedUrl, setSelectedUrl] = useState(null);
@@ -29,11 +30,20 @@ function App() {
     setSelectedUrl(null);
   };
 
-  // // Para obtener la localizacion del Residente
-  // let link = selectedLocation
-  // const number = link?.match(/\d+/) * 1;
-  // console.log(selectedLocation)
-  console.log(location)
+
+  useEffect(() => {
+    if (location) {
+      let pages = Math.ceil((location.residents.length) / 10)
+      let arr = []
+      for (let i = 1; i <= pages; i++) {
+        arr.push(i)
+      }
+      setCurrentPage(arr)
+    }
+  }, [location])
+
+
+
 
   useEffect(() => {
     const url = `https://rickandmortyapi.com/api/location/${numberLocation}`
@@ -123,6 +133,14 @@ function App() {
             </div>
           </div>
         }
+      </div>
+
+      <div className='container__button-pages'>
+        {currentPage ? currentPage.map(page => {
+          return <div key={page}>
+            <button className='button__pages'>{page}</button>
+          </div>
+        }) : null}
       </div>
 
       <a href="#"><i className='bx bxs-chevron-up-circle buttton__up'></i></a>
