@@ -37,19 +37,6 @@ const ResidentInfo = ({ url }) => {
                 </ul>
             </section>
         </article>
-
-
-
-
-        //     <section className='card__character-info'>
-        //         <h3>{character?.name}</h3>
-        //         <ul>
-        //             <li><span>Specie: </span>{character?.species}</li>
-        //             <li><span>Origin: </span>{character?.origin.name}</li>
-        //             <li><span>Episodies where Appears: </span>{character?.episode.length}</li>
-        //         </ul>
-        //     </section >
-        // </article >
     )
 }
 

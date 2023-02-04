@@ -74,6 +74,12 @@
     align-items: center;
 }
 
+
+.Search__dimension {
+
+    background-color: red;
+}
+
 @media (max-width: 800px) {
     .card__residents {
         display: flex;

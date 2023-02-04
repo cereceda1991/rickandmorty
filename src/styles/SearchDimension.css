@@ -1,0 +1,15 @@
+.card__Srch-list {
+    position: relative;
+    z-index: 2;
+    background-color: white;
+    color: black;
+    font-weight: 500;
+    font-size: .9rem;
+    padding: 0.1rem 1rem 0.1rem 1rem;
+    display: flex;
+}
+
+.card__Srch-list:hover {
+    cursor: pointer;
+    background-color: aqua;
+}
