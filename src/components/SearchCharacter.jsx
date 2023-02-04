@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const SearchCharacter = () => {
+const SearchCharacter = ({ setSelectedUrl }) => {
     const [characterName, setCharacterName] = useState("");
     const [character, setCharacter] = useState([]);
 
     useEffect(() => {
-
         if (characterName === "") {
             setCharacter([]);
             return;
@@ -17,10 +16,10 @@ const SearchCharacter = () => {
             .catch(err => console.log(err))
     }, [characterName])
 
-
     const handleClick = (result) => {
         setCharacterName(result.name);
         setCharacter([]);
+        setSelectedUrl(result.url);
     };
 
 
@@ -33,7 +32,6 @@ const SearchCharacter = () => {
                 value={characterName}
                 onChange={e => setCharacterName(e.target.value)}
             />
-
             {character && character.results && (
                 <ul>
                     {character?.results.map(char => (
@@ -44,11 +42,10 @@ const SearchCharacter = () => {
                             {char.name}
                         </li>
                     ))}
-
                 </ul>
             )}
         </div>
     );
-}
+};
 
-export default SearchCharacter
+export default SearchCharacter;

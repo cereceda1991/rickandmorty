@@ -17,12 +17,14 @@ function App() {
   const [numberLocation, setNumberLocation] = useState(getRandomLocation())
   const [hasError, setHasError] = useState(false)
 
+  const [selectedUrl, setSelectedUrl] = useState(null);
   const [dimensionId, setDimensionId] = useState(null);
   const [searchType, setSearchType] = useState('location');
   const handleSearchTypeChange = (event) => {
     setSearchType(event.target.value);
   };
 
+  console.log(selectedUrl)
 
   useEffect(() => {
     const url = `https://rickandmortyapi.com/api/location/${numberLocation}`
@@ -74,7 +76,7 @@ function App() {
             />
           ) : (
             searchType === 'character' ? (
-              <SearchCharacter />
+              <SearchCharacter setSelectedUrl={setSelectedUrl} />
             ) : (
               <input className='card__input' id='inputLocation' type="text" placeholder='Enter a location' />
             )
@@ -95,15 +97,14 @@ function App() {
 
 
             <LocationInfo location={location} />
-            <div className='card__residents'>
-              {
+            <div className="card__residents">
+              {selectedUrl ? (
+                <ResidentInfo key={selectedUrl} url={selectedUrl} />
+              ) : (
                 location?.residents?.map(url => (
-                  <ResidentInfo
-                    key={url}
-                    url={url}
-                  />
+                  <ResidentInfo key={url} url={url} />
                 ))
-              }
+              )}
             </div>
           </div>
         }
