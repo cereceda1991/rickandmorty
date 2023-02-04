@@ -17,6 +17,7 @@ function App() {
   const [numberLocation, setNumberLocation] = useState(getRandomLocation())
   const [hasError, setHasError] = useState(false)
 
+  const [selectedLocation, setSelectedLocation] = useState("");
   const [selectedUrl, setSelectedUrl] = useState(null);
   const [dimensionId, setDimensionId] = useState(null);
   const [searchType, setSearchType] = useState('location');
@@ -24,7 +25,15 @@ function App() {
     setSearchType(event.target.value);
   };
 
-  console.log(selectedUrl)
+  const clearSelectedUrl = () => {
+    setSelectedUrl(null);
+  };
+
+  // // Para obtener la localizacion del Residente
+  // let link = selectedLocation
+  // const number = link?.match(/\d+/) * 1;
+  // console.log(selectedLocation)
+  console.log(location)
 
   useEffect(() => {
     const url = `https://rickandmortyapi.com/api/location/${numberLocation}`
@@ -40,19 +49,22 @@ function App() {
   }, [numberLocation])
 
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
+    clearSelectedUrl();
     if (searchType === 'location') {
       if (e.target.inputLocation.value.trim().length === 0) {
-        setNumberLocation()
+        setNumberLocation();
       } else {
-        setNumberLocation(e.target.inputLocation.value.trim())
+        setNumberLocation(e.target.inputLocation.value.trim());
       }
     } else if (searchType === 'Name-Location') {
       if (dimensionId) {
-        setNumberLocation(dimensionId)
+        setNumberLocation(dimensionId);
       }
+    } else if (searchType === 'character') {
+      // Aquí agregaré la lógica para la búsqueda por personaje
     }
-  }
+  };
 
 
   return (
@@ -76,7 +88,10 @@ function App() {
             />
           ) : (
             searchType === 'character' ? (
-              <SearchCharacter setSelectedUrl={setSelectedUrl} />
+              <SearchCharacter
+                setSelectedUrl={setSelectedUrl}
+                setSelectedLocation={setSelectedLocation}
+              />
             ) : (
               <input className='card__input' id='inputLocation' type="text" placeholder='Enter a location' />
             )
@@ -93,10 +108,10 @@ function App() {
           <HasError />
           :
           <div className='container__location'>
-
-
-
-            <LocationInfo location={location} />
+            <LocationInfo
+              location={location}
+              selectedLocation={selectedLocation}
+            />
             <div className="card__residents">
               {selectedUrl ? (
                 <ResidentInfo key={selectedUrl} url={selectedUrl} />
@@ -108,10 +123,12 @@ function App() {
             </div>
           </div>
         }
-        <a href="#"><i className='bx bxs-chevron-up-circle buttton__up'></i></a>
-
       </div>
-    </div >
+
+      <a href="#"><i className='bx bxs-chevron-up-circle buttton__up'></i></a>
+
+    </div>
+
   )
 }
 

@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const SearchCharacter = ({ setSelectedUrl }) => {
+const SearchCharacter = ({ setSelectedUrl, setSelectedLocation }) => {
     const [characterName, setCharacterName] = useState("");
     const [character, setCharacter] = useState([]);
+
 
     useEffect(() => {
         if (characterName === "") {
@@ -20,6 +21,7 @@ const SearchCharacter = ({ setSelectedUrl }) => {
         setCharacterName(result.name);
         setCharacter([]);
         setSelectedUrl(result.url);
+        setSelectedLocation(result.location.url);
     };
 
 
