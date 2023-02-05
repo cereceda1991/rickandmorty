@@ -1,6 +1,6 @@
 import React from 'react'
 
-const LocationInfo = ({ location, selectedLocation }) => {
+const LocationInfo = ({ location }) => {
     return (
         <article className='card__location'>
             <p className='info__location'>Name:<b> {location?.name}</b></p>

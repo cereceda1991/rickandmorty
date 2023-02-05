@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-const SearchDimension = ({ dimensionId, setDimensionId }) => {
+const SearchDimension = ({ setDimensionId }) => {
     const [dimensionName, setDimensionName] = useState("");
     const [results, setResults] = useState([]);
 
