@@ -1,10 +1,10 @@
-import axios from 'axios'
-import { useEffect, useState } from 'react'
 import './App.css'
-import './styles/ResidentInfo.css'
 import './styles/LocationInfo.css'
+import './styles/ResidentInfo.css'
 import './styles/HasError.css'
 import './styles/SearchDimension.css'
+import axios from 'axios'
+import { useEffect, useState } from 'react'
 import LocationInfo from './components/LocationInfo'
 import ResidentInfo from './components/ResidentInfo'
 import getRandomLocation from './utils/getRandomLocation'
@@ -58,13 +58,17 @@ function App() {
       })
   }, [numberLocation])
 
+
   const handleSubmit = (e) => {
     e.preventDefault();
     clearSelectedUrl();
     if (searchType === 'location') {
       if (e.target.inputLocation.value.trim().length === 0) {
-        setNumberLocation();
+        setHasError('err');
+      } else if (e.target.inputLocation.value.trim() === '0') {
+        setHasError('err');
       } else {
+        setHasError(null);
         setNumberLocation(e.target.inputLocation.value.trim());
       }
     } else if (searchType === 'Name-Location') {
@@ -75,6 +79,24 @@ function App() {
       // Aquí agregaré la lógica para la búsqueda por personaje
     }
   };
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   clearSelectedUrl();
+  //   if (searchType === 'location') {
+  //     if (e.target.inputLocation.value.trim().length === 0) {
+  //       setNumberLocation();
+  //     } else {
+  //       setNumberLocation(e.target.inputLocation.value.trim());
+  //     }
+  //   } else if (searchType === 'Name-Location') {
+  //     if (dimensionId) {
+  //       setNumberLocation(dimensionId);
+  //     }
+  //   } else if (searchType === 'character') {
+  //     // Aquí agregaré la lógica para la búsqueda por personaje
+  //   }
+  // };
 
 
   return (

@@ -15,5 +15,5 @@
 .card__img-error {
     width: 500px;
     aspect-ratio: 1.5;
-    border-radius: 50%;
+    border-radius: 1rem;
 }
