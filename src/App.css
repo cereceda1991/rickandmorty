@@ -54,12 +54,8 @@
 }
 
 .card__title {
-    /* font-family: 'Rubik Vinyl', cursive; */
     font-size: 28px;
-    /* letter-spacing: 1rem; */
     text-shadow: -1px -8px 5px #000;
-    /* color: whitesmoke; */
-    /* border-radius: 1rem; */
 }
 
 .buttton__up {

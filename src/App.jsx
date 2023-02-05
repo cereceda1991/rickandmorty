@@ -18,7 +18,6 @@ function App() {
   const [hasError, setHasError] = useState(false)
   const [currentPage, setCurrentPage] = useState()
 
-  const [selectedLocation, setSelectedLocation] = useState("");
   const [selectedUrl, setSelectedUrl] = useState(null);
   const [dimensionId, setDimensionId] = useState(null);
   const [searchType, setSearchType] = useState('location');
@@ -41,8 +40,6 @@ function App() {
       setCurrentPage(arr)
     }
   }, [location])
-
-
 
 
   useEffect(() => {
@@ -77,28 +74,9 @@ function App() {
       }
     } else if (searchType === 'character') {
       // Aquí agregaré la lógica para la búsqueda por personaje
+      setNumberLocation(0)
     }
   };
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   clearSelectedUrl();
-  //   if (searchType === 'location') {
-  //     if (e.target.inputLocation.value.trim().length === 0) {
-  //       setNumberLocation();
-  //     } else {
-  //       setNumberLocation(e.target.inputLocation.value.trim());
-  //     }
-  //   } else if (searchType === 'Name-Location') {
-  //     if (dimensionId) {
-  //       setNumberLocation(dimensionId);
-  //     }
-  //   } else if (searchType === 'character') {
-  //     // Aquí agregaré la lógica para la búsqueda por personaje
-  //   }
-  // };
-
-
   return (
     <div className="App">
       <div className='card__head-front'>
@@ -122,7 +100,8 @@ function App() {
             searchType === 'character' ? (
               <SearchCharacter
                 setSelectedUrl={setSelectedUrl}
-                setSelectedLocation={setSelectedLocation}
+              // selectedLocation={selectedLocation}
+
               />
             ) : (
               <input className='card__input' id='inputLocation' type="text" placeholder='Enter a location' />
@@ -142,7 +121,6 @@ function App() {
           <div className='container__location'>
             <LocationInfo
               location={location}
-              selectedLocation={selectedLocation}
             />
             <div className="card__residents">
               {selectedUrl ? (

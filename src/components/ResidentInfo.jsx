@@ -7,7 +7,7 @@ const ResidentInfo = ({ url }) => {
         axios.get(url)
             .then(res => setCharacter(res.data))
             .catch(err => console.log(err))
-    }, [])
+    }, [url])
 
     return (
 
@@ -18,7 +18,6 @@ const ResidentInfo = ({ url }) => {
                     <span className={`card__circle ${character?.status}`}></span>
                     <span className="card__circle-label">{character?.status}</span></div>
             </header>
-
             <section className="card__body">
                 <h3 className="card__name">{character?.name}</h3>
                 <ul className="card__list">

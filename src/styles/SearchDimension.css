@@ -11,5 +11,6 @@
 
 .card__Srch-list:hover {
     cursor: pointer;
-    background-color: aqua;
+    background-color: #8a2be2;
+    color: #fff;
 }

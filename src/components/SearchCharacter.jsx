@@ -5,17 +5,25 @@ const SearchCharacter = ({ setSelectedUrl, setSelectedLocation }) => {
     const [characterName, setCharacterName] = useState("");
     const [character, setCharacter] = useState([]);
 
-
     useEffect(() => {
-        if (characterName === "") {
+        if (!characterName) {
             setCharacter([]);
             return;
         }
-        const url = `https://rickandmortyapi.com/api/character/?name=${characterName}`;
-        axios.get(url)
-            .then(res => setCharacter(res.data))
-            .catch(err => console.log(err))
-    }, [characterName])
+
+        const fetchData = async () => {
+            try {
+                const res = await axios.get(
+                    `https://rickandmortyapi.com/api/character/?name=${characterName}`
+                );
+                setCharacter(res.data);
+            } catch (err) {
+                console.log(err);
+            }
+        };
+
+        fetchData();
+    }, [characterName]);
 
     const handleClick = (result) => {
         setCharacterName(result.name);
@@ -24,7 +32,6 @@ const SearchCharacter = ({ setSelectedUrl, setSelectedLocation }) => {
         setSelectedLocation(result.location.url);
     };
 
-
     return (
         <div>
             <input
@@ -32,12 +39,13 @@ const SearchCharacter = ({ setSelectedUrl, setSelectedLocation }) => {
                 type="text"
                 placeholder="Enter character name"
                 value={characterName}
-                onChange={e => setCharacterName(e.target.value)}
+                onChange={(e) => setCharacterName(e.target.value)}
             />
-            {character && character.results && (
+            {character?.results?.length > 0 && (
                 <ul>
-                    {character?.results.map(char => (
-                        <li className="card__Srch-list"
+                    {character.results.map((char) => (
+                        <li
+                            className="card__Srch-list"
                             key={char.id}
                             onClick={() => handleClick(char)}
                         >
