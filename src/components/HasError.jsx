@@ -1,12 +1,21 @@
 import React from 'react'
 
 const HasError = () => {
+
+
     return (
-        <div className='container__error'>
-            <h2 className='card__error'>❌ Hey! you must provide an location from 1 to 126 🥺</h2>
-            <img className='card__img-error' src="https://media.tenor.com/NidJyk78iAkAAAAd/rick-and-morty-crying.gif" alt="crying" />
+        <div className='card__error'>
+            <div className='box__error' id="error">
+                <div id="box"></div>
+                <h3>✖ ERROR</h3>
+                <p>Hey! you must provide an location from <span> 1 to 126 </span> here</p>
+            </div>
+
         </div>
     )
 }
 
 export default HasError
+
+
+

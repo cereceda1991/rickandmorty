@@ -11,35 +11,28 @@ import getRandomLocation from './utils/getRandomLocation'
 import HasError from './components/HasError'
 import SearchDimension from './components/SearchDimension'
 import SearchCharacter from './components/SearchCharacter'
+import ButtonUp from './components/ButtonUp'
 
 function App() {
   const [location, setLocation] = useState()
   const [numberLocation, setNumberLocation] = useState(getRandomLocation())
-  const [hasError, setHasError] = useState(false)
-  const [currentPage, setCurrentPage] = useState()
-
+  // const [currentPage, setCurrentPage] = useState()
   const [selectedUrl, setSelectedUrl] = useState(null);
   const [dimensionId, setDimensionId] = useState(null);
-  const [searchType, setSearchType] = useState('location');
-  const handleSearchTypeChange = (event) => {
-    setSearchType(event.target.value);
-  };
+  const [searchType, setSearchType] = useState('location')
 
-  const clearSelectedUrl = () => {
-    setSelectedUrl(null);
-  };
+  const [hasError, setHasError] = useState(false)
 
-
-  useEffect(() => {
-    if (location) {
-      let pages = Math.ceil((location.residents.length) / 10)
-      let arr = []
-      for (let i = 1; i <= pages; i++) {
-        arr.push(i)
-      }
-      setCurrentPage(arr)
-    }
-  }, [location])
+  // useEffect(() => {
+  //   if (location) {
+  //     let pages = Math.ceil((location.residents.length) / 10)
+  //     let arr = []
+  //     for (let i = 1; i <= pages; i++) {
+  //       arr.push(i)
+  //     }
+  //     setCurrentPage(arr)
+  //   }
+  // }, [location])
 
 
   useEffect(() => {
@@ -55,6 +48,14 @@ function App() {
       })
   }, [numberLocation])
 
+
+  const handleSearchTypeChange = (event) => {
+    setSearchType(event.target.value);
+  };
+
+  const clearSelectedUrl = () => {
+    setSelectedUrl(null);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -77,19 +78,19 @@ function App() {
       setNumberLocation(0)
     }
   };
+
   return (
     <div className="App">
       <div className='card__head-front'>
         <h1 className='card__title'>Rick and Morty</h1>
         <form className='card__form' onSubmit={(e) => handleSubmit(e, dimensionId)}>
 
-          <select value={searchType} onChange={handleSearchTypeChange}>
+          <select className='card__select' value={searchType} onChange={handleSearchTypeChange}>
             <option value="location">Location</option>
             <option value="Name-Location">Name Location</option>
             <option value="character">Character</option>
             <option value="episode">Episode</option>
           </select>
-
 
           {searchType === 'Name-Location' ? (
             <SearchDimension
@@ -108,46 +109,44 @@ function App() {
             )
           )}
 
-
           <button ><i className='bx bx-search-alt'></i></button>
         </form>
 
-
       </div>
-      <div >
-        {hasError ?
-          <HasError />
-          :
-          <div className='container__location'>
-            <LocationInfo
-              location={location}
-            />
-            <div className="card__residents">
-              {selectedUrl ? (
-                <ResidentInfo key={selectedUrl} url={selectedUrl} />
-              ) : (
-                location?.residents?.map(url => (
-                  <ResidentInfo key={url} url={url} />
-                ))
-              )}
+      <div>
+        <div>
+          {hasError ?
+            <HasError />
+            :
+            <div className='container__location'>
+              <LocationInfo
+                location={location}
+              />
+              <div className="card__residents">
+                {selectedUrl ? (
+                  <ResidentInfo key={selectedUrl} url={selectedUrl} />
+                ) : (
+                  location?.residents?.map(url => (
+                    <ResidentInfo key={url} url={url} />
+                  ))
+                )}
+              </div>
             </div>
-          </div>
-        }
+          }
+        </div>
+        <ButtonUp show={!hasError} />
       </div>
+    </div>
+  )
+}
 
-      <div className='container__button-pages'>
+export default App
+
+
+{/* <div className='container__button-pages'>
         {currentPage ? currentPage.map(page => {
           return <div key={page}>
             <button className='button__pages'>{page}</button>
           </div>
         }) : null}
-      </div>
-
-      <a href="#"><i className='bx bxs-chevron-up-circle buttton__up'></i></a>
-
-    </div>
-
-  )
-}
-
-export default App
+      </div> */}
